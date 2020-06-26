@@ -1,0 +1,11 @@
+C:\Users\rapma\OneDrive\Área de Trabalho\Codes\Projetos\Valtec\obj\Debug\netcoreapp3.1\Valtec.csprojAssemblyReference.cache
+C:\Users\rapma\OneDrive\Área de Trabalho\Codes\Projetos\Valtec\obj\Debug\netcoreapp3.1\Valtec.AssemblyInfoInputs.cache
+C:\Users\rapma\OneDrive\Área de Trabalho\Codes\Projetos\Valtec\obj\Debug\netcoreapp3.1\Valtec.AssemblyInfo.cs
+C:\Users\rapma\OneDrive\Área de Trabalho\Codes\Projetos\Valtec\bin\Debug\netcoreapp3.1\Valtec.exe
+C:\Users\rapma\OneDrive\Área de Trabalho\Codes\Projetos\Valtec\bin\Debug\netcoreapp3.1\Valtec.deps.json
+C:\Users\rapma\OneDrive\Área de Trabalho\Codes\Projetos\Valtec\bin\Debug\netcoreapp3.1\Valtec.runtimeconfig.json
+C:\Users\rapma\OneDrive\Área de Trabalho\Codes\Projetos\Valtec\bin\Debug\netcoreapp3.1\Valtec.runtimeconfig.dev.json
+C:\Users\rapma\OneDrive\Área de Trabalho\Codes\Projetos\Valtec\bin\Debug\netcoreapp3.1\Valtec.dll
+C:\Users\rapma\OneDrive\Área de Trabalho\Codes\Projetos\Valtec\bin\Debug\netcoreapp3.1\Valtec.pdb
+C:\Users\rapma\OneDrive\Área de Trabalho\Codes\Projetos\Valtec\obj\Debug\netcoreapp3.1\Valtec.dll
+C:\Users\rapma\OneDrive\Área de Trabalho\Codes\Projetos\Valtec\obj\Debug\netcoreapp3.1\Valtec.pdb
