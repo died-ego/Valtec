@@ -13,11 +13,8 @@ namespace Valtec
             OrdensRepository ordensRepository = new OrdensRepository();
             Console.Clear();
             
-            System.Console.WriteLine("1 - Cadastrar nova ordem");
-            System.Console.WriteLine("2 - Consultar uma ordem");
-            System.Console.WriteLine("0 - Sair");
-            System.Console.Write("Digite a opção: ");
-            string opcaoMenu = System.Console.ReadLine();
+            string opcaoMenu;
+            MenuInicial(opcaoMenu);
 
             switch(opcaoMenu)
             {
@@ -89,6 +86,15 @@ namespace Valtec
                 }
                 break;
             }
+        }
+
+        public static void MenuInicial(string opcaoMenu)
+        {
+            System.Console.WriteLine("1 - Cadastrar nova ordem");
+            System.Console.WriteLine("2 - Consultar uma ordem");
+            System.Console.WriteLine("0 - Sair");
+            System.Console.Write("Digite a opção: ");
+            opcaoMenu = Console.ReadLine();
         }
     }
 }
