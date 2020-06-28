@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using Valtec.Models;
 using Valtec.Repositories;
-
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using iTextSharp.text.html.simpleparser;
 namespace Valtec
 {
     class Program
@@ -84,18 +86,50 @@ namespace Valtec
                     System.Console.WriteLine($"Nome: {ordemBuscada.Nome}  Nº da Ordem: {ordemBuscada.ordemNumero}  Telefone: {ordemBuscada.Telefone}  Orçamento: R$ {ordemBuscada.Orcamento}  Desconto: RS {ordemBuscada.Desconto}");
                 } else if(opcaoConsultar == "3"){
                     Console.Clear();
-                    Document doc = new Document(PageSize.A4);
-                    doc.SetMargins(40, 40, 40, 80);
+                    Ordem ordemBuscada = new Ordem();
+                    System.Console.Write("Digite o NOME ou o Nº DA ORDEM que deseja consultar: ");
+                    string opcao = Console.ReadLine();
+                    ordemBuscada = ordensRepository.ObterPor(opcao);
+
+                    Document doc = new Document(PageSize.A4);//criando e 
+                    doc.SetMargins(40, 40, 40, 80);//estibulando o 
                     doc.AddCreationDate();//adicionando as configuracoes
         
                     //caminho onde sera criado o pdf + nome desejado
                     //OBS: o nome sempre deve ser terminado com .pdf
-                    string caminho = $"Database/{DateTime.Now.Year}" + "CONTRATO.pdf";
-                      
-                    //doc criada acima e a variavel caminho 
+                    string caminho =  $"Database/" + ordemBuscada.Nome;
+        
+                    //criando o arquivo pdf embranco, passando como parametro 
+
                     //tambem criada acima.
-                    PdfWriter writer = PdfWriter.GetInstance(doc, new
-                    FileStream(caminho, FileMode.Create));
+                    PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(caminho, FileMode.Create));
+        
+                    doc.Open();
+        
+                    //criando uma string vazia
+                    string dados="";
+        
+                    //criando a variavel para paragrafo
+                    Paragraph paragrafo = new Paragraph(dados, 
+                    new Font(Font.NORMAL, 14));
+                    //etipulando o alinhamneto
+                    paragrafo.Alignment = Element.ALIGN_JUSTIFIED; 
+                    //Alinhamento Justificado
+                    //adicioando texto
+                    
+                    paragrafo.Add($"Nome: {ordemBuscada.Nome} \n");
+
+                    paragrafo.Add($"Nº da Ordem: {ordemBuscada.ordemNumero}\n");
+
+                    paragrafo.Add($"Telefone: {ordemBuscada.Telefone} \n");
+
+                    paragrafo.Add($"Orçamento: R$ {ordemBuscada.Orcamento}\n");
+
+                    paragrafo.Add($"Desconto: RS {ordemBuscada.Desconto}\n");
+                    doc.Add(paragrafo);
+                    
+                    //fechando documento para que seja salva as 
+                    doc.Close();
 
                 }else {
                     System.Console.WriteLine("Digite uma opção válida.");
