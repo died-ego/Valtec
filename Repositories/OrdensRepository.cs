@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using Valtec.Models;
 
+using iTextSharp;//E A BIBLIOTECA ITEXTSHARP E SUAS EXTENÇÕES
+using iTextSharp.text;//ESTENSAO 1 (TEXT)
+using iTextSharp.text.pdf;//ESTENSAO 2 (PDF)
+
 namespace Valtec.Repositories
 {
     public class OrdensRepository : RepositoryBase

@@ -13,8 +13,8 @@ namespace Valtec
             OrdensRepository ordensRepository = new OrdensRepository();
             Console.Clear();
             
-            string opcaoMenu;
-            MenuInicial(opcaoMenu);
+            
+            string opcaoMenu = MenuInicial();
 
             switch(opcaoMenu)
             {
@@ -64,6 +64,7 @@ namespace Valtec
                 Console.Clear();
                 System.Console.WriteLine("1 - Consultar todas as ordens");
                 System.Console.WriteLine("2 - Pesquisar uma ordem");
+                System.Console.WriteLine("3 - Transformar uma ordem em PDF");
                 System.Console.Write("Digite a opção: ");
                 string opcaoConsultar = Console.ReadLine();
                 if(opcaoConsultar == "1") {
@@ -81,20 +82,35 @@ namespace Valtec
                     ordemBuscada = ordensRepository.ObterPor(opcao);
                     Console.Clear();
                     System.Console.WriteLine($"Nome: {ordemBuscada.Nome}  Nº da Ordem: {ordemBuscada.ordemNumero}  Telefone: {ordemBuscada.Telefone}  Orçamento: R$ {ordemBuscada.Orcamento}  Desconto: RS {ordemBuscada.Desconto}");
-                } else {
+                } else if(opcaoConsultar == "3"){
+                    Console.Clear();
+                    Document doc = new Document(PageSize.A4);
+                    doc.SetMargins(40, 40, 40, 80);
+                    doc.AddCreationDate();//adicionando as configuracoes
+        
+                    //caminho onde sera criado o pdf + nome desejado
+                    //OBS: o nome sempre deve ser terminado com .pdf
+                    string caminho = $"Database/{DateTime.Now.Year}" + "CONTRATO.pdf";
+                      
+                    //doc criada acima e a variavel caminho 
+                    //tambem criada acima.
+                    PdfWriter writer = PdfWriter.GetInstance(doc, new
+                    FileStream(caminho, FileMode.Create));
+
+                }else {
                     System.Console.WriteLine("Digite uma opção válida.");
                 }
                 break;
             }
         }
 
-        public static void MenuInicial(string opcaoMenu)
+        public static string MenuInicial()
         {
             System.Console.WriteLine("1 - Cadastrar nova ordem");
             System.Console.WriteLine("2 - Consultar uma ordem");
             System.Console.WriteLine("0 - Sair");
             System.Console.Write("Digite a opção: ");
-            opcaoMenu = Console.ReadLine();
+            return Console.ReadLine();
         }
     }
 }
