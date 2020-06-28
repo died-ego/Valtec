@@ -59,5 +59,27 @@ namespace Valtec.Repositories
             }
             return ordens;
         }
+
+        public List<Ordem> ObterTodosSemOrcamento()
+        {
+            var linhas = File.ReadAllLines(PATH);
+            List<Ordem> ordensSemOrcamento = new List<Ordem>();
+            foreach(var linha in linhas) {
+                if(ExtrairValorDoCampo("orçamento", linha) == "0") {
+                    Ordem ordem = new Ordem();
+                    ordem.Nome = ExtrairValorDoCampo("nome", linha);
+                    ordem.ordemNumero = ulong.Parse(ExtrairValorDoCampo("numero_ordem", linha));
+                    ordem.Telefone = ExtrairValorDoCampo("telefone", linha);
+                    ordem.Orcamento = double.Parse(ExtrairValorDoCampo("orçamento", linha));
+                    ordem.Desconto = double.Parse(ExtrairValorDoCampo("desconto", linha));
+                    ordensSemOrcamento.Add(ordem);
+                }
+            }
+            return ordensSemOrcamento;
+        }
+
+        public void AtualizarOrdem(Ordem ordem) {
+            
+        }
     }
 }
