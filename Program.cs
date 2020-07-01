@@ -82,7 +82,7 @@ namespace Valtec
                 } else if(opcaoConsultar == "2") {
                     Console.Clear();
                     Ordem ordemBuscada = new Ordem();
-                    System.Console.Write("Digite o NOME ou o Nº DA ORDEM que deseja procurar: ");
+                    System.Console.Write("Digite o NOME ou o NÚMERO da orem que deseja procurar: ");
                     string opcao = Console.ReadLine().ToLower();
                     ordemBuscada = ordensRepository.ObterPor(opcao);
                     Console.Clear();
@@ -107,6 +107,20 @@ namespace Valtec
 
                 case "4":
                 Console.Clear();
+                System.Console.Write("Digite o NOME ou NÚMERO da ordem que deseja atualizar: ");
+                string opcaoAtualizar = Console.ReadLine().ToLower();
+                Ordem atualizarOrdem = ordensRepository.ObterPor(opcaoAtualizar);
+                if(atualizarOrdem == null) {
+                    System.Console.WriteLine("Não existe uma ordem com as informações fornecidas.");
+                } else {
+                    System.Console.Write("Digite o novo valor do ORÇAMENTO: R$");
+                    double novoOrcamento = double.Parse(Console.ReadLine());
+                    System.Console.Write("Digite o novo valor do DESCONTO: R$");
+                    double novoDesconto = double.Parse(Console.ReadLine());
+                    atualizarOrdem.Orcamento = novoOrcamento;
+                    atualizarOrdem.Desconto = novoDesconto;
+                    ordensRepository.AtualizarOrdem(opcaoAtualizar, atualizarOrdem);
+                }
                 break;
             }
         }

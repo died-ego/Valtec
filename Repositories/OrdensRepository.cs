@@ -78,8 +78,28 @@ namespace Valtec.Repositories
             return ordensSemOrcamento;
         }
 
-        public void AtualizarOrdem(Ordem ordem) {
-            
+        public void AtualizarOrdem(string opcao, Ordem ordemAtualizada) {
+            Ordem ordemBuscada = ObterPor(opcao);
+            int linha = 0;
+            var linhas = File.ReadAllLines(PATH);
+            if(ordemBuscada.Orcamento != ordemAtualizada.Orcamento) {
+                ordemBuscada.Orcamento = ordemAtualizada.Orcamento;
+            }
+            if(ordemBuscada.Desconto != ordemAtualizada.Desconto) {
+                ordemBuscada.Desconto = ordemAtualizada.Desconto;
+            }
+
+            var ordensTotais = ObterTodos();
+            for(int i = 0; i < ordensTotais.Count; i++) {
+                if(ordensTotais[i].Nome.ToString() == opcao
+                || ordensTotais[i].ordemNumero.ToString() == opcao) {
+                    linha = i;
+                    break;
+                }
+            }
+
+            linhas[linha] = PrepararRegistroCSV(ordemBuscada);
+            File.WriteAllLines(PATH, linhas);
         }
     }
 }
